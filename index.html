@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolo Viaggio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="A.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="logo">Calcolo Viaggio</div>
+        <a id="link" href="https://www.artusi.edu.it/">IPSSAR Artusi</a>
+    </header>
+
+    <main>
+        <div class="container">
+            <div id="intro" class="block">
+                <h1>Personalizza il tuo tour</h1>
+                <button onclick="goToGiorno1()">Vai &rarr;</button>
+            </div>
+
+            <div id="giorno1" class="hidden block">
+                <h1>Giornata 1</h1>
+                <p>Pomeriggio:</p>
+                <label><input type="checkbox" id="duomo"><a href="https://i.pinimg.com/originals/f8/5c/21/f85c216903354780ff3472f3bd7dc11a.jpg">Visita Duomo (€32)</a></label><br>
+                <label><input type="checkbox" id="parco"><a href="https://www.tiraccontounviaggio.it/wp-content/uploads/2022/05/cosa-sapere-parco-leolandia-1024x630.jpg">Parco divertimenti Leolandia (€30)</a></label><br>
+
+                <p>Sera:</p>
+                <label><input type="checkbox" id="festa"><a href="https://www.youparti.com/nightlife_2016/nightlife/wp-content/uploads/2016/10/Gattopardo-cafe-milan-milano-club-e1458257169748-1024x684.jpg"> Festa al Gattopardo Milano (€20)</a></label><br>
+                <label><input type="checkbox" id="cinema"><a href="https://www.europa-cinemas.org/storage/ecdbimages/salle/SP-8779-0.jpg">Cinema Centrale Milano (€10)</a></label><br>
+
+                <div class="button-row">
+                    <button class="back-button" onclick="goToIntro()">Indietro</button>
+                    <button onclick="goToGiorno2()">Avanti</button>
+                </div>
+            </div>
+
+            <div id="giorno2" class="hidden block">
+                <h1>Giornata 2</h1>
+                <p>Mattina:</p>
+                <label><input type="checkbox" id="basilica"><a href="https://www.maddalene101.it/wp-content/uploads/2018/03/basilicaP-2-1200x600.jpg"> Visita Basilica Palladiana (€24)</a></label><br>
+                <label><input type="checkbox" id="teatro"><a href="https://www.teatroolimpico.vicenza.it/img/home-sfondo3.jpg"> Visita Teatro Olimpico (€20)</a></label><br>
+
+                <p>Pomeriggio:</p>
+                <label><input type="checkbox" id="aperitivo1"><a href="https://th.bing.com/th/id/R.e9903621427d907748a9885ae9005267?rik=oP%2bBjcbDzXOGaw&pid=ImgRaw&r=0"> Aperitivo + Tour in Piazza dei Signori (€25)</a></label><br>
+                <label><input type="checkbox" id="aperitivo2"><a href="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/f7/1c/3d/20180925-134325-largejpg.jpg?w=1200&h=1200&s=1"> Aperitivo + Passeggiata Parco Querini (€15)</a></label><br>
+
+                <div class="button-row">
+                    <button class="back-button" onclick="goToGiorno1()" id="Indietro">Indietro</button>
+                    <button onclick="goToRiepilogo()" id="Avanti">Avanti</button>
+                </div>
+            </div>
+
+            <div id="riepilogo" class="hidden block">
+                <h1>Riepilogo Costi</h1>
+                <div id="costi"></div>
+
+                <h2>Calcolo Totale</h2>
+                <div id="totaleCosto" class="hidden"></div>
+
+                <div class="button-row">
+                    <button class="back-button" onclick="goToGiorno2()">Indietro</button>
+                    <button onclick="ricomincia()">Ricomincia</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Calcolo Viaggio. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
