@@ -39,10 +39,10 @@ function ricomincia() {
 function aggiornaRiepilogo() {
     const costiAttivita = {
         giorno1: {
-            duomo: { descrizione: "Visita Duomo", costo: 32 },
-            parco: { descrizione: "Parco divertimenti Leolandia", costo: 30 },
-            festa: { descrizione: "Festa al Gattopardo Milano", costo: 20 },
-            cinema: { descrizione: "Cinema Centrale Milano", costo: 10 }
+            rotonda: { descrizione: "Villa La Rotonda", costo: 15 },
+            monte: { descrizione: "Santuario di Monte Berico", costo: 0 },
+            gioiello: { descrizione: "Museo del gioiello", costo: 8 },
+            musei: { descrizione: "Biglietto Unico Musei", costo: 15 }
         },
         giorno2: {
             basilica: { descrizione: "Visita Basilica Palladiana", costo: 24 },
@@ -71,7 +71,7 @@ function aggiornaRiepilogo() {
         <h3>Costi Fissi</h3>
         <ul>
             <li>Viaggio: €${costoFissoViaggio}</li>
-            <li>Hotel: €${costoFissoHotel}</li>
+            <li>Hotel+Pasti: €${costoFissoHotel}</li>
         </ul>
     `;
 
@@ -82,10 +82,10 @@ function aggiornaRiepilogo() {
 // Funzione per calcolare il totale dei costi
 function calcolaTotale() {
     const costiAttivita = {
-        duomo: 32,
-        parco: 30,
-        festa: 20,
-        cinema: 10,
+        rotonda: 15,
+        monte: 0,
+        gioello: 8,
+        musei: 15,
         basilica: 24,
         teatro: 20,
         aperitivo1: 25,
@@ -96,8 +96,8 @@ function calcolaTotale() {
         .filter(([id]) => document.getElementById(id).checked)
         .reduce((totale, [_, costo]) => totale + costo, 0);
 
-    const costoFissoViaggio = 85;
-    const costoFissoHotel = 190;
+    const costoFissoViaggio = 115;
+    const costoFissoHotel = 210;
 
     const totale = totaleAttivita + costoFissoViaggio + costoFissoHotel;
 
