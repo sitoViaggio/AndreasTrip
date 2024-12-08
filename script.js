@@ -84,7 +84,7 @@ function calcolaTotale() {
     const costiAttivita = {
         rotonda: 15,
         monte: 6,
-        gioello: 8,
+        gioiello: 8,
         musei: 15,
         basilica: 24,
         teatro: 20,
