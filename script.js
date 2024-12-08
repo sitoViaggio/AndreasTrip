@@ -54,8 +54,8 @@ function aggiornaRiepilogo() {
         }
     });
 
-    const costoFissoViaggio = 85;
-    const costoFissoHotel = 190;
+    const costoFissoViaggio = 115;
+    const costoFissoHotel = 210;
 
     riepilogoHTML += `
         <h3>Costi Fissi</h3>
