@@ -40,7 +40,7 @@ function aggiornaRiepilogo() {
     const costiAttivita = {
         giorno1: {
             rotonda: { descrizione: "Villa La Rotonda", costo: 15 },
-            monte: { descrizione: "Santuario di Monte Berico", costo: 0 },
+            monte: { descrizione: "Santuario di Monte Berico", costo: 6 },
             gioiello: { descrizione: "Museo del gioiello", costo: 8 },
             musei: { descrizione: "Biglietto Unico Musei", costo: 15 }
         },
@@ -83,7 +83,7 @@ function aggiornaRiepilogo() {
 function calcolaTotale() {
     const costiAttivita = {
         rotonda: 15,
-        monte: 0,
+        monte: 6,
         gioello: 8,
         musei: 15,
         basilica: 24,
