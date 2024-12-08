@@ -4,7 +4,7 @@ function mostraSezione(sezioneID) {
     document.getElementById(sezioneID).classList.remove('hidden');
 }
 
-// Funzioni per navigare tra le sezioni
+// Funzioni di navigazione
 function goToIntro() {
     mostraSezione('intro');
 }
@@ -22,45 +22,35 @@ function goToRiepilogo() {
     aggiornaRiepilogo();
 }
 
-// Funzione per il bottone "Ricomincia" che riporta alla pagina principale
+// Funzione per il bottone "Ricomincia"
 function ricomincia() {
-    mostraSezione('intro'); // Torna alla pagina iniziale (intro)
-    // Se hai bisogno di resettare la selezione dei checkbox, puoi farlo qui
-    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-        checkbox.checked = false;
-    });
-    // Se desideri nascondere anche il riepilogo totale, puoi farlo qui:
+    mostraSezione('intro');
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
     document.getElementById('totaleCosto').classList.add('hidden');
-    // Puoi anche resettare i contenuti nel riepilogo
     document.getElementById('costi').innerHTML = '';
 }
 
-// Funzione per aggiornare il riepilogo e calcolare automaticamente il totale
+// Funzione per aggiornare il riepilogo
 function aggiornaRiepilogo() {
     const costiAttivita = {
-        giorno1: {
-            rotonda: { descrizione: "Villa La Rotonda", costo: 15 },
-            monte: { descrizione: "Santuario di Monte Berico", costo: 6 },
-            gioiello: { descrizione: "Museo del gioiello", costo: 8 },
-            musei: { descrizione: "Biglietto Unico Musei", costo: 15 }
-        },
-        giorno2: {
-            basilica: { descrizione: "Visita Basilica Palladiana", costo: 24 },
-            teatro: { descrizione: "Visita Teatro Olimpico", costo: 20 },
-            aperitivo1: { descrizione: "Aperitivo in Piazza dei Signori", costo: 25 },
-            aperitivo2: { descrizione: "Aperitivo e Passeggiata Parco Querini", costo: 15 }
-        }
+        rotonda: { descrizione: "Villa La Rotonda", costo: 15 },
+        monte: { descrizione: "Santuario di Monte Berico", costo: 6 },
+        gioiello: { descrizione: "Museo del Gioiello", costo: 8 },
+        musei: { descrizione: "Biglietto Unico Musei", costo: 15 },
+        basilica: { descrizione: "Basilica Palladiana", costo: 24 },
+        teatro: { descrizione: "Teatro Olimpico", costo: 20 },
+        aperitivo1: { descrizione: "Aperitivo in Piazza dei Signori", costo: 25 },
+        aperitivo2: { descrizione: "Aperitivo e Passeggiata Parco Querini", costo: 15 }
     };
 
     let riepilogoHTML = '';
-    Object.entries(costiAttivita).forEach(([giorno, attivita]) => {
-        const attivitaSelezionate = Object.entries(attivita)
-            .filter(([id]) => document.getElementById(id).checked)
-            .map(([_, dettagli]) => dettagli);
+    let totaleAttivita = 0;
 
-        if (attivitaSelezionate.length > 0) {
-            riepilogoHTML += `<h3>${giorno.charAt(0).toUpperCase() + giorno.slice(1)}</h3>`;
-            riepilogoHTML += `<ul>${attivitaSelezionate.map(att => `<li>${att.descrizione}: €${att.costo}</li>`).join('')}</ul>`;
+    Object.entries(costiAttivita).forEach(([id, dettagli]) => {
+        const checkbox = document.getElementById(id);
+        if (checkbox && checkbox.checked) {
+            riepilogoHTML += `<li>${dettagli.descrizione}: €${dettagli.costo}</li>`;
+            totaleAttivita += dettagli.costo;
         }
     });
 
@@ -76,36 +66,17 @@ function aggiornaRiepilogo() {
     `;
 
     document.getElementById('costi').innerHTML = riepilogoHTML || '<p>Nessuna attività selezionata.</p>';
-    calcolaTotale();
+    calcolaTotale(totaleAttivita, costoFissoViaggio, costoFissoHotel);
 }
 
-// Funzione per calcolare il totale dei costi
-function calcolaTotale() {
-    const costiAttivita = {
-        rotonda: 15,
-        monte: 6,
-        gioiello: 8,
-        musei: 15,
-        basilica: 24,
-        teatro: 20,
-        aperitivo1: 25,
-        aperitivo2: 15
-    };
-
-    const totaleAttivita = Object.entries(costiAttivita)
-        .filter(([id]) => document.getElementById(id).checked)
-        .reduce((totale, [_, costo]) => totale + costo, 0);
-
-    const costoFissoViaggio = 115;
-    const costoFissoHotel = 210;
-
-    const totale = totaleAttivita + costoFissoViaggio + costoFissoHotel;
-
+// Funzione per calcolare il totale
+function calcolaTotale(attivita, viaggio, hotel) {
+    const totale = attivita + viaggio + hotel;
     document.getElementById('totaleCosto').innerHTML = `<h2>Totale: €${totale.toFixed(2)}</h2>`;
     document.getElementById('totaleCosto').classList.remove('hidden');
 }
 
-// Listener per calcolo automatico
+// Listener per aggiornamento automatico
 document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
     checkbox.addEventListener('change', aggiornaRiepilogo);
 });
